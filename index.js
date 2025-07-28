@@ -49,6 +49,14 @@ app.put("/users/:id", (req, res) => {
   res.json({ message: "Updates", users });
 });
 
+
+app.delete("/users/:id", (req, res) => {
+  const user = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const deleteUser = users.splice(user, 1);
+  res.json({ message: "DeleteUser", user: deleteUser[0] });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
