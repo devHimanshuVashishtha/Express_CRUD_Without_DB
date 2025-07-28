@@ -25,6 +25,21 @@ app.post("/users", (req, res) => {
   res.status(202).json({ message: "User add Successfully" });
 });
 
+
+
+app.get("/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = users.find((u) => u.id === id);
+  if (!user)
+    return res.json({ message: "not Found or Wrong input" });
+  res.status(202).json({ message: "Founded", user });
+});
+
+app.get("/users", (req, res) => {
+  res.json({ message: "Here is the users Details", users });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
