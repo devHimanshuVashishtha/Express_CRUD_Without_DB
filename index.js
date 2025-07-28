@@ -40,6 +40,15 @@ app.get("/users", (req, res) => {
 });
 
 
+app.put("/users/:id", (req, res) => {
+  const user = users.find((u) => u.id === parseInt(req.params.id));
+  if (!user) return res.json({ message: "wrong input" });
+  user.name = req.body.name || user.name;
+  user.email = req.body.email || user.email;
+
+  res.json({ message: "Updates", users });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
